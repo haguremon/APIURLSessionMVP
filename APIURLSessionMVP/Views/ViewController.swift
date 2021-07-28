@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     private var haguremon = [GitHubhaguremon]()
+    private var repository = [HaguremonRepository]()
     private let identifie = "cell"
     @IBOutlet weak var tableView: UITableView!
     private let mygitHub = MygitHub()
@@ -16,8 +17,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mygitHub.setPresnter(delegate: self)
-        mygitHub.getApi()
-        
+        mygitHub.getHaguremon()
+        mygitHub.getRepository()
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -25,25 +26,59 @@ class ViewController: UIViewController {
 
 }
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
-
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-          return haguremon.count
+        switch section {
+        case 0:
+            return haguremon.count
+        case 1:
+            return repository.count
+        default:
+            return 0
+        }
   
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifie, for: indexPath)
-        cell.textLabel?.text = haguremon[indexPath.row].login
+        
+        switch indexPath.section{
+        case 0:
+            cell.textLabel?.text = haguremon[indexPath.row].login
         return cell
+        case 1:
+            cell.textLabel?.text = "\(repository[indexPath.row].id)\(repository[indexPath.row].name)"
+        return cell
+        default:
+            return cell
+        }
+        
 
 }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let alert = UIAlertController(title: "taped cell", message: "\(haguremon[indexPath.row].bio)\n\(haguremon[indexPath.row].updatedat)", preferredStyle: .alert)
+    func alert(title: String,message:String ){
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         alert.addAction(action)
         present(alert, animated: true)
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.section {
+        case 0:
+            alert(title: "taped cell", message: "\(haguremon[indexPath.row].bio)\n\(haguremon[indexPath.row].updatedat)")
+        case 1:
+            alert(title: "taped cell", message: "\(repository[indexPath.row].name)")
+        default:
+            break
+        }
+    
+    }
 }
-    extension ViewController : MygithubAPIDelegate{
+extension ViewController : MygithubAPIDelegate{
+    func didsetRepository(repository: [HaguremonRepository]) {
+        self.repository = repository
+    }
     
     func didsetUser(user: [GitHubhaguremon]) {
         self.haguremon = user
@@ -52,4 +87,4 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-}
+    }
