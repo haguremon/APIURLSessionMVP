@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         mygitHub.setPresnter(delegate: self)
         mygitHub.getHaguremon()
-       // mygitHub.getRepository()
+        
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -78,16 +78,20 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 extension ViewController : MygithubAPIDelegate{
     func didsetRepository(items: [HaguremonRepository]) {
         self.haguremonrepository = items
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
+        
         }
     }
     
     func didsetUser(user: [GitHubhaguremon]) {
         self.haguremon = user
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+   
     }
     
     }
