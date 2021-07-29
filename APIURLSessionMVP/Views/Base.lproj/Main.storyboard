@@ -27,11 +27,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6es-g1-mFm">
-                                                    <rect key="frame" x="6" y="0.0" width="93" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6es-g1-mFm">
+                                                    <rect key="frame" x="6" y="0.0" width="93" height="43.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="93" id="vA9-T2-QQ0"/>
+                                                    </constraints>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="small"/>
                                                 </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="6es-g1-mFm" firstAttribute="top" secondItem="MkJ-dM-Nxa" secondAttribute="topMargin" constant="-11" id="1mH-xi-0Cj"/>
+                                                <constraint firstItem="6es-g1-mFm" firstAttribute="leading" secondItem="MkJ-dM-Nxa" secondAttribute="leadingMargin" constant="-14" id="G1u-1j-JMk"/>
+                                                <constraint firstItem="6es-g1-mFm" firstAttribute="centerY" secondItem="MkJ-dM-Nxa" secondAttribute="centerY" id="May-EW-lhv"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
@@ -40,10 +48,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="tFy-bO-1cf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7It-6j-Ykw"/>
-                            <constraint firstAttribute="bottom" secondItem="tFy-bO-1cf" secondAttribute="bottom" id="bwn-6a-ARC"/>
-                            <constraint firstItem="tFy-bO-1cf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="uKK-h8-kOU"/>
-                            <constraint firstItem="tFy-bO-1cf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="32" id="xFc-fZ-1C0"/>
+                            <constraint firstItem="tFy-bO-1cf" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="-12" id="9fO-h2-stv"/>
+                            <constraint firstItem="tFy-bO-1cf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kpV-Se-aYN"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="tFy-bO-1cf" secondAttribute="bottom" constant="-34" id="l4X-mm-iAP"/>
+                            <constraint firstItem="tFy-bO-1cf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tVL-IC-aOH"/>
                         </constraints>
                     </view>
                     <connections>
@@ -52,7 +60,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="88.392857142857139"/>
+            <point key="canvasLocation" x="-35" y="70"/>
         </scene>
     </scenes>
     <resources>

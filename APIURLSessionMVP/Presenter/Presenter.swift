@@ -33,7 +33,7 @@ class MygitHub {
                
                 let user = try JSONDecoder().decode(GitHubhaguremon.self, from: data)
                 self?.delegate?.didsetUser(user: [user])
-           
+           print(user)
             } catch {
                 
                 print(error)

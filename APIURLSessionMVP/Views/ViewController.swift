@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mygitHub.setPresnter(delegate: self)
+        mygitHub.setPresenter(delegate: self)
         mygitHub.getHaguremon()
         
         tableView.delegate = self
@@ -43,9 +43,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifie, for: indexPath)
-        
+        let imageView = view.viewWithTag(1) as? UIImageView
+        imageView?.clipsToBounds = true
         switch indexPath.section{
         case 0:
+            let avatarImage =  haguremon[indexPath.row].avatarurl
+            let imageUrl = URL(string: avatarImage)!
+            let imageData = try! Data(contentsOf: imageUrl)
+            imageView?.image = UIImage(data: imageData)
             cell.textLabel?.text = haguremon[indexPath.row].login
         return cell
         case 1:

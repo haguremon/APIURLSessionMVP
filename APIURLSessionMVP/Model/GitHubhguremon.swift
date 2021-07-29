@@ -11,10 +11,13 @@ struct GitHubhaguremon: Codable {
     let login: String
     let bio: String
     let updatedat: String
+    let avatarurl: String
     enum CodingKeys : String, CodingKey {
         case login//ここ二つ書かないといけないらしいｗ
         case bio
+        case avatarurl = "avatar_url"
         case updatedat = "updated_at"
+    
     }
 }
 
