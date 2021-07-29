@@ -43,14 +43,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifie, for: indexPath)
-        let imageView = view.viewWithTag(1) as? UIImageView
-        imageView?.clipsToBounds = true
         switch indexPath.section{
         case 0:
-            let avatarImage =  haguremon[indexPath.row].avatarurl
-            let imageUrl = URL(string: avatarImage)!
-            let imageData = try! Data(contentsOf: imageUrl)
-            imageView?.image = UIImage(data: imageData)
             cell.textLabel?.text = haguremon[indexPath.row].login
         return cell
         case 1:
@@ -66,6 +60,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         alert.addAction(action)
+        let imageView = UIImageView(frame: CGRect(x: 5, y: -40, width: 60, height: 60))
+        let avatarImage =  haguremon.first?.avatarurl
+        let imageUrl = URL(string: avatarImage!)!
+        let imageData = try! Data(contentsOf: imageUrl)
+        imageView.image = UIImage(data: imageData)
+        alert.view.addSubview(imageView)
         present(alert, animated: true)
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -78,6 +78,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             break
         }
     
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+        return "USER"
+        case 1:
+        return "HAGUREMON REPOSITORY"
+        default:
+            return nil
+        }
     }
 }
 extension ViewController : MygithubAPIDelegate{

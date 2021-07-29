@@ -42,9 +42,9 @@ class MygitHub {
            
             do {
                 
-                let repository = try JSONDecoder().decode(Repository.self, from: data)
-                let items =  repository.items
-                self?.delegate?.didsetRepository(items: items)
+                let repository = try JSONDecoder().decode(Repository.self, from: data).items
+                //let items =  repository.items
+                self?.delegate?.didsetRepository(items: repository)
             
             } catch {
                 

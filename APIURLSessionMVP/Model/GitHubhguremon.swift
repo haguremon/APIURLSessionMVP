@@ -3,7 +3,7 @@
 //  APIURLSessionMVP
 //github_search_repositoryの
 //Created by IwasakIYuta on 2021/07/28.
-//https://api.github.com/search/repositories?q=user:haguremon //これを探すのに時間がかかった
+//https://api.github.com/search/repositories?q=user:haguremon//これを探すのに時間がかかった
 //https://api.github.com/users/haguremon
 
 import Foundation
