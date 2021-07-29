@@ -7,7 +7,7 @@
 //https://api.github.com/users/haguremon
 
 import Foundation
-struct GitHubhaguremon: Codable {
+struct GitHubHaguremon: Codable {
     let login: String
     let bio: String
     let updatedat: String

@@ -9,7 +9,7 @@ import Foundation
 
 protocol MygithubAPIDelegate: AnyObject {
     
-    func didsetUser(user: [GitHubhaguremon])
+    func didsetUser(user: [GitHubHaguremon])
     
     func didsetRepository(items: [HaguremonRepository])
 }
@@ -31,7 +31,7 @@ class MygitHub {
             //do連続をどうにかしたい
             do {
                
-                let user = try JSONDecoder().decode(GitHubhaguremon.self, from: data)
+                let user = try JSONDecoder().decode(GitHubHaguremon.self, from: data)
                 self?.delegate?.didsetUser(user: [user])
            print(user)
             } catch {
