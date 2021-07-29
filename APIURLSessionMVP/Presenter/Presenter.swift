@@ -8,7 +8,7 @@
 import Foundation
 protocol MygithubAPIDelegate: AnyObject {
     func didsetUser(user: [GitHubhaguremon])
-    func didsetRepository(repository: [HaguremonRepository])
+    func didsetRepository(items: [HaguremonRepository])
 }
 class MygitHub {
     typealias delgatepr = MygithubAPIDelegate & ViewController
@@ -22,27 +22,38 @@ class MygitHub {
             guard response.statusCode == 200 else { return }
 //            var request = URLRequest(url: url)
 //            request.httpMethod = "GET"
+            //do連続をどうにかしたい
             do {
                 let user = try JSONDecoder().decode(GitHubhaguremon.self, from: data)
-                print(user)
                 self?.delegate?.didsetUser(user: [user])
-                let repository = try JSONDecoder().decode(HaguremonRepository.self, from: data)
-                self?.delegate?.didsetRepository(repository: [repository])
-              print(repository)
-            }catch{
+            }
+            catch{
                 print(error)
             }
+            do{
+                let repository = try JSONDecoder().decode(Repository.self, from: data)
+                 let items =  repository.items
+                self?.delegate?.didsetRepository(items: items)
+                //                let repository = try JSONDecoder().decode(Repository.self, from: data)
+//                 let items =  repository.items
+//                self?.delegate?.didsetRepository(repository: [repository], items: items)
+            }catch {
+              print(error)
+           }
         }
         task.resume()
     
     }
     func getHaguremon(){
         getApi(url: "https://api.github.com/users/haguremon")
+        DispatchQueue.main.async {
+            self.getApi(url: "https://api.github.com/search/repositories?q=user:haguremon")
+        }
     }
-    func getRepository(){
-        getApi(url: "https://api.github.com/users/haguremon/repos")
-    }
-    
+//    func getRepository(){
+//        getApi(url: "https://api.github.com/search/repositories?q=user:haguremon")
+//    }
+//
     
     func setPresnter(delegate: delgatepr){
         self.delegate = delegate

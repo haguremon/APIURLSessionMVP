@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     private var haguremon = [GitHubhaguremon]()
-    private var repository = [HaguremonRepository]()
+    private var haguremonrepository = [HaguremonRepository]()
     private let identifie = "cell"
     @IBOutlet weak var tableView: UITableView!
     private let mygitHub = MygitHub()
@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         mygitHub.setPresnter(delegate: self)
         mygitHub.getHaguremon()
-        mygitHub.getRepository()
+       // mygitHub.getRepository()
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -35,7 +35,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return haguremon.count
         case 1:
-            return repository.count
+            return haguremonrepository.count
         default:
             return 0
         }
@@ -49,7 +49,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = haguremon[indexPath.row].login
         return cell
         case 1:
-            cell.textLabel?.text = "\(repository[indexPath.row].id)\(repository[indexPath.row].name)"
+            cell.textLabel?.text = "\(haguremonrepository[indexPath.row].name)"
         return cell
         default:
             return cell
@@ -68,7 +68,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             alert(title: "taped cell", message: "\(haguremon[indexPath.row].bio)\n\(haguremon[indexPath.row].updatedat)")
         case 1:
-            alert(title: "taped cell", message: "\(repository[indexPath.row].name)")
+            alert(title: "taped cell", message: "\(haguremonrepository[indexPath.row].fullName)")
         default:
             break
         }
@@ -76,8 +76,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 extension ViewController : MygithubAPIDelegate{
-    func didsetRepository(repository: [HaguremonRepository]) {
-        self.repository = repository
+    func didsetRepository(items: [HaguremonRepository]) {
+        self.haguremonrepository = items
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     func didsetUser(user: [GitHubhaguremon]) {
