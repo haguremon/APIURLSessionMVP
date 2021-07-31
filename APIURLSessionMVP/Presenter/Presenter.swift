@@ -25,9 +25,11 @@ class MygitHub {
             
             guard let data = data ,
                   let response = response as? HTTPURLResponse,
-                      error == nil else { return }
+                  response.statusCode == 200,
+                 
+                  error == nil else { return }
             
-            guard response.statusCode == 200 else { return }
+            
             //do連続をどうにかしたい
             do {
                

@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    private var haguremon = [GitHubhaguremon]()
+    private var haguremon = [GitHubHaguremon]()
     private var haguremonrepository = [HaguremonRepository]()
     private let identifie = "cell"
     @IBOutlet weak var tableView: UITableView!
@@ -100,7 +100,7 @@ extension ViewController : MygithubAPIDelegate{
         }
     }
     
-    func didsetUser(user: [GitHubhaguremon]) {
+    func didsetUser(user: [GitHubHaguremon]) {
         self.haguremon = user
         
         DispatchQueue.main.async {
